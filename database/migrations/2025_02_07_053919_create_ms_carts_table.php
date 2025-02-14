@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ms_carts', function (Blueprint $table) {
-            $table->id('cart_id');
             $table->integer('quantity');
             $table->dateTime('added_date', precision: 0);
             $table->unsignedBigInteger('customer_id');

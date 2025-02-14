@@ -13,7 +13,7 @@ class MsCustomer extends Model
 
     protected $primaryKey = 'customer_id';
 
-    protected $guarded = ['customer_id'];
+    protected $guarded = ['customer_id', 'customer_balance'];
 
     public function mstopup(){
         return $this->hasMany(MsTopUp::class, 'customer_id', 'customer_id');

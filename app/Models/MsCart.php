@@ -11,10 +11,6 @@ class MsCart extends Model
 
     protected $table = 'ms_carts';
 
-    protected $primaryKey = 'cart_id';
-
-    protected $guarded = ['cart_id'];
-
     public function mscustomer(){
         return $this->belongsTo(MsCustomer::class, 'customer_id', 'customer_id');
     }

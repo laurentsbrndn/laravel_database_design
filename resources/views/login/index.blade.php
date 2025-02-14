@@ -7,9 +7,9 @@
 
 <div>
     <div>
-        <p class="signup">Don't have any account? <a href="{{ url('/signup') }}">Sign Up</a></p>
+        <p class="signup">Don't have any account? <a href="/signup">Sign Up</a></p>
     </div>
-    <div>   
+    <div>    
         <h3>Email</h3>
         <input type="email" name="email" id="email" placeholder="Enter your email">
     </div>

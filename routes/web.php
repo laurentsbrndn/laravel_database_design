@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerLoginController;
+use App\Http\Controllers\CustomerSignUpController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/signup', function () {
-    return view('signup');
-});
+Route::get('/', [ProductsController::class, 'index']);
+Route::get('/login', [CustomerLoginController::class, 'index']);
+Route::get('/signup', [CustomerSignUpController::class, 'index']);
+Route::post('/signup', [CustomerSignUpController::class, 'store']);
