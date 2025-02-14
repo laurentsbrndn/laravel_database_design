@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('customer_address');
             $table->string('customer_photo', length: 200)->nullable();
             $table->enum('customer_gender', ['Male', 'Female', 'Prefer not to say']);
-            $table->decimal('customer_balance', total: 12, places: 2);
+            $table->decimal('customer_balance', total: 12, places: 2)->default(0);
             $table->timestamps();
         });
     }

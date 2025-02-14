@@ -14,32 +14,62 @@
 
         <div>
             <label for="customer_first_name">First Name</label>
-            <input id="customer_first_name" type="text" name="customer_first_name" class="@error('customer_first_name') is-invalid @enderror" placeholder="Enter your first name" value="{{ old('customer_first_name') }}">
+            <input id="customer_first_name" type="text" name="customer_first_name" class="form-control @error('customer_first_name') is-invalid @enderror" placeholder="Enter your first name" value="{{ old('customer_first_name') }}" required>
+            @error('customer_first_name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
             <label for="customer_last_name">Last Name</label>
-            <input type="text" name="customer_last_name" id="customer_last_name" class="@error('customer_last_name') is-invalid @enderror" placeholder="Enter your last name" value="{{ old('customer_last_name') }}">
+            <input type="text" name="customer_last_name" id="customer_last_name" class="form-control @error('customer_last_name') is-invalid @enderror" placeholder="Enter your last name" value="{{ old('customer_last_name') }}" required>
+            @error('customer_last_name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         
         <div>
             <label for="customer_email">Email</label>
-            <input type="email" name="customer_email" id="customer_email" placeholder="Enter your email" value="{{ old('customer_email') }}">
+            <input type="email" name="customer_email" id="customer_email" class="form-control @error('customer_email') is-invalid @enderror" placeholder="Enter your email" value="{{ old('customer_email') }}" required>
+            @error('customer_email')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
             <label for="customer_password">Password</label>
-            <input type="password" name="customer_password" id="customer_password" placeholder="Enter your password" value="{{ old('customer_password') }}">
+            <input type="password" name="customer_password" id="customer_password" class="form-control @error('customer_password') is-invalid @enderror" placeholder="Enter your password" required>
+            @error('customer_password')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
             <label for="customer_phone_number">Phone Number</label>
-            <input type="text" name="customer_phone_number" id="customer_phone_number" placeholder="Enter your phone number" value="{{ old('customer_phone_number') }}">
+            <input type="text" name="customer_phone_number" id="customer_phone_number" class="form-control @error('customer_phone_number') is-invalid @enderror" placeholder="Enter your phone number" value="{{ old('customer_phone_number') }}" required>
+            @error('customer_phone_number')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
-         <div>
+        <div>
             <label for="customer_address">Address</label>
-            <input type="text" name="customer_address" id="customer_address" placeholder="Enter your address" value="{{ old('customer_address') }}">
+            <input type="text" name="customer_address" id="customer_address" class="form-control @error('customer_address') is-invalid @enderror" placeholder="Enter your address" value="{{ old('customer_address') }}" required>
+            @error('customer_address')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
@@ -53,21 +83,25 @@
             </div>
             <div>
                 <div>
-                    <input type="radio" name="customer_gender" id="male" value="Male">
+                    <input type="radio" name="customer_gender" id="male" class="form-check-input @error('customer_gender') is-invalid @enderror" value="Male">
                     <label for="male">Male</label>
                 </div>
 
                 <div>
-                    <input type="radio" name="customer_gender" id="female" value="Female">
+                    <input type="radio" name="customer_gender" id="female" class="form-check-input @error('customer_gender') is-invalid @enderror" value="Female">
                     <label for="female">Female</label>
                 </div>
 
                 <div>
-                    <input type="radio" name="customer_gender" id="prefer_not_to_say" value="Prefer not to say">
+                    <input type="radio" name="customer_gender" id="prefer_not_to_say" class="form-check-input @error('customer_gender') is-invalid @enderror" value="Prefer not to say">
                     <label for="prefer_not_to_say">Prefer not to say</label>
                 </div>
             </div>
-            
+            @error('customer_gender')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
     </div>
