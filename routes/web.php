@@ -26,4 +26,6 @@ Route::post('/logout', [CustomerLoginController::class, 'logout']);
 Route::get('/signup', [CustomerSignUpController::class, 'index'])->middleware('guest');
 Route::post('/signup', [CustomerSignUpController::class, 'store']);
 
-Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->middleware('auth:customer');
+Route::get('/dashboard', function(){
+    return view('dashboard.index');
+})->middleware('auth:customer');
