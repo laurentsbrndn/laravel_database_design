@@ -13,16 +13,10 @@ class CategoriesController extends Controller
         $categories = MsCategory::all();
         return view('categories.index', compact('categories'));
     }
-
-    // public function show($category_name){
-    //     $category = MsCategory::where('category_name', $category_name)->firstOrFail();
-    //     $products = MsProduct::where('category_id', $category->id)->get();
-
-    //     return view('category.index', compact('category', 'products'));
-    // }
-    public function show($category_name)
+    
+    public function show($category_slug)
     {
-        $category = MsCategory::with('msproduct')->where('category_name', $category_name)->firstOrFail();
+        $category = MsCategory::with('msproduct')->where('category_slug', $category_slug)->firstOrFail();
 
         return view('category.index', [
             'category' => $category,

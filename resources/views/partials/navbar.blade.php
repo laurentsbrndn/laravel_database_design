@@ -3,9 +3,15 @@
     <ul class="nav-link">
         <li><a href="/categories">Category</a></li>
         <li>
-            <div class="search-bar">
-                <input type="text" placeholder="Type here to search...">
-                <button>Search</button>
+            <div class="row">
+                <div class="col-md-20">
+                    <form action="/" method="get">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Type here to search" name="search" value="{{ request('search') }}">
+                            <button class="btn btn-danger" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </li>
     </ul>

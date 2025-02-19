@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class MsProduct extends Model
 {
@@ -34,5 +35,14 @@ class MsProduct extends Model
 
     public function mscart(){
         return $this->hasMany(MsCart::class, 'product_id', 'product_id');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($product) {
+            $product->product_slug = Str::slug($product->product_name);
+        });
     }
 }

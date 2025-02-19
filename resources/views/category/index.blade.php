@@ -5,7 +5,7 @@
     <div class="products-container">
         @foreach ($products as $product)
             <div>
-                <a href="{{ url('/products/' . $product->product_name) }}">
+                <a href="{{ url('/products/' . $product->product_slug) }}">
                     <img src="{{ asset('storage/product_photos/' . $product->product_image) }}" class="card-img-top" alt="{{ $product->product_name }}">
                 </a>
             </div>

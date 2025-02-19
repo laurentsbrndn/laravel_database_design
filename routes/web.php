@@ -19,7 +19,7 @@ use App\Http\Controllers\CategoriesController;
 */
 
 Route::get('/', [ProductsController::class, 'index']);
-Route::get('/products/{product_name}', [ProductsController::class, 'show'])->name('products.show');
+Route::get('/products/{product_slug}', [ProductsController::class, 'show'])->name('products.show');
 
 Route::get('/login', [CustomerLoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [CustomerLoginController::class, 'authenticate']);
@@ -33,4 +33,4 @@ Route::get('/dashboard', function(){
 })->middleware('auth:customer');
 
 Route::get('/categories', [CategoriesController::class, 'index']);
-Route::get('/categories/{category_name}', [CategoriesController::class, 'show']);
+Route::get('/categories/{category_slug}', [CategoriesController::class, 'show']);

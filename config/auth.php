@@ -43,10 +43,10 @@ return [
     // ],
 
     'guards' => [
-        // 'web' => [
-        //     'driver' => 'session',
-        //     'provider' => 'customers',
-        // ],
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
 
         'customer' => [
             'driver' => 'session',

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ms_categories', function (Blueprint $table) {
             $table->id('category_id')->unique();
             $table->enum('category_name', ['Food', 'Beverages', 'Household Supplies', 'Daily Needs', 'Cleaning Products', 'Stationery']);
+            $table->string('category_slug', length: 200)->unique();
             $table->timestamps();
         });
     }

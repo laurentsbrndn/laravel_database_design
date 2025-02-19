@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MsCategory>
@@ -16,8 +17,27 @@ class MsCategoryFactory extends Factory
      */
         public function definition(): array
         {
+
+            static $usedCategories = [];
+
+            $allCategories = [
+                'Food', 'Beverages', 'Household Supplies', 
+                'Daily Needs', 'Cleaning Products', 'Stationery'
+            ];
+
+            $availableCategories = array_diff($allCategories, $usedCategories);
+
+            if (empty($availableCategories)) {
+                throw new \Exception("All category have been used");
+            }
+
+            $categoryName = $this->faker->randomElement($availableCategories);
+
+            $usedCategories[] = $categoryName;
+
             return [
-                'category_name' => $this->faker->unique()->randomElement(['Food', 'Beverages', 'Household Supplies', 'Daily Needs', 'Cleaning Products', 'Stationery']),
+                'category_name' => $categoryName,
+                'category_slug' => Str::slug($categoryName),
             ];
         }
 }

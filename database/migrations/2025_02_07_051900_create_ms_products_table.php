@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('product_stock');
             $table->string('product_image', length: 200);
             $table->text('product_description');
+            $table->string('product_slug', length: 200)->unique();
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
