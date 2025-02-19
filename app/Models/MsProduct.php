@@ -15,6 +15,11 @@ class MsProduct extends Model
 
     protected $guarded = ['product_id'];
 
+    public function getRouteKeyName()
+    {
+        return 'product_name';
+    }
+
     public function mscategory(){
         return $this->belongsTo(MsCategory::class, 'category_id', 'category_id');
     }

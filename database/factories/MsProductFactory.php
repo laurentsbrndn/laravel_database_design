@@ -23,6 +23,7 @@ class MsProductFactory extends Factory
             'product_price' => $this->faker->randomFloat(2, 0, 100000),
             'product_stock' => $this->faker->numberBetween(0, 100),
             'product_image' => $this->faker->name,
+            'product_description' => $this->faker->sentence,
 
             'brand_id' => MsBrand::inRandomOrder()->first()->brand_id ?? MsBrand::factory(),
             'category_id' => MsCategory::inRandomOrder()->first()->category_id ?? MsCategory::factory(),

@@ -26,7 +26,7 @@ class CustomerLoginController extends Controller
         if(Auth::guard('customer')->attempt($credentials)){
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/');
         }
 
         return back()->with('loginError', 'Login failed!');

@@ -16,6 +16,7 @@ use App\Models\MsPaymentMethod;
 use App\Models\MsProduct;
 use App\Models\MsShipment;
 use App\Models\MsTopUp;
+use App\Models\MsHistory;
 use App\Models\TransactionDetail;
 use App\Models\TransactionHeader;
 
@@ -40,5 +41,6 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::factory(50)->create();
         MsShipment::factory(30)->create();
         MsCart::factory(20)->create();
+        MsHistory::factory(30)->create();
     }
 }

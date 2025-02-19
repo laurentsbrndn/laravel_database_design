@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\CustomerSignUpController;
 use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\CustomerDashboardController;
 */
 
 Route::get('/', [ProductsController::class, 'index']);
+Route::get('/products/{product_name}', [ProductsController::class, 'show'])->name('products.show');
 
 Route::get('/login', [CustomerLoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [CustomerLoginController::class, 'authenticate']);
@@ -29,3 +31,6 @@ Route::post('/signup', [CustomerSignUpController::class, 'store']);
 Route::get('/dashboard', function(){
     return view('dashboard.index');
 })->middleware('auth:customer');
+
+Route::get('/categories', [CategoriesController::class, 'index']);
+Route::get('/categories/{category_name}', [CategoriesController::class, 'show']);

@@ -43,4 +43,9 @@ class MsCustomer extends Authenticatable
     {
         return $this->hasMany(MsCart::class, 'customer_id', 'customer_id');
     }
+
+    public function mshistory()
+    {
+        return $this->hasMany(MsHistory::class, 'customer_id', 'customer_id');
+    }
 }

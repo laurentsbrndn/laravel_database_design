@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('product_price', total: 12, places: 2);
             $table->integer('product_stock');
             $table->string('product_image', length: 200);
+            $table->text('product_description');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
