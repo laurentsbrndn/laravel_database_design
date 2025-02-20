@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\CustomerSignUpController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CustomerUpdateProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,8 @@ Route::post('/logout', [CustomerLoginController::class, 'logout']);
 Route::get('/signup', [CustomerSignUpController::class, 'index'])->middleware('guest');
 Route::post('/signup', [CustomerSignUpController::class, 'store']);
 
-Route::get('/dashboard', function(){
-    return view('dashboard.index');
-})->middleware('auth:customer');
+Route::get('/dashboard/myprofile', [CustomerUpdateProfileController::class, 'show'])->middleware('auth:customer');
+Route::put('dashboard/myprofile/update', [CustomerUpdateProfileController::class, 'update'])->middleware('auth:customer');
 
 Route::get('/categories', [CategoriesController::class, 'index']);
 Route::get('/categories/{category_slug}', [CategoriesController::class, 'show']);
