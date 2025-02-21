@@ -2,8 +2,8 @@
     <h4 class="text-center">Daily Needs</h4>
     <a href="/">Home</a>
     <a href="/dashboard/myprofile">My Profile</a>
-    <a href="#">Purchased History</a>
-    <a href="#">Top Up</a>
+    <a href="/dashboard/purchasehistory">Purchased History</a>
+    <a href="/dashboard/topup">Top Up</a>
     <form action="/logout" method="post">
         @csrf
         <button type="submit" class="dropdown-item">Logout</button>

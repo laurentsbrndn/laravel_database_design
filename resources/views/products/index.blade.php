@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('container')
+    @auth('customer')
+        <h3>Your balance: Rp{{ number_format($customers->customer_balance, 2, ',', '.') }}</h3>
+    @else
+
+    @endauth
     @if ($products->count())
         <div class="products-container">
             @foreach ($products as $product)

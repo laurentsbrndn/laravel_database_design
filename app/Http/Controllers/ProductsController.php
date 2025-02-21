@@ -7,11 +7,15 @@ use App\Models\MsCategory;
 use App\Models\MsProduct;
 use App\Models\MsBrand;
 use App\Models\MsCompany;
+use App\Models\MsCustomer;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
     public function index()
     {   
+        $customers = Auth::guard('customer')->user();
+
         $products = MsProduct::latest()
             ->when(request('search'), function ($productQuery) {
                 return $productQuery->where('product_name', 'like', '%' . request('search') . '%')
@@ -21,7 +25,7 @@ class ProductsController extends Controller
                 });
             })->with(['msbrand', 'mscategory'])->get();
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'customers'));
     }
 
     public function show($product_slug)

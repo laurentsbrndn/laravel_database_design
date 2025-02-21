@@ -7,6 +7,8 @@ use App\Http\Controllers\CustomerSignUpController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerUpdateProfileController;
+use App\Http\Controllers\CustomerTopUpController;
+use App\Http\Controllers\CustomerPurchaseHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,9 @@ use App\Http\Controllers\CustomerUpdateProfileController;
 Route::get('/', [ProductsController::class, 'index']);
 Route::get('/products/{product_slug}', [ProductsController::class, 'show'])->name('products.show');
 
+Route::get('/categories', [CategoriesController::class, 'index']);
+Route::get('/categories/{category_slug}', [CategoriesController::class, 'show']);
+
 Route::get('/login', [CustomerLoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [CustomerLoginController::class, 'authenticate']);
 Route::post('/logout', [CustomerLoginController::class, 'logout']);
@@ -32,5 +37,7 @@ Route::post('/signup', [CustomerSignUpController::class, 'store']);
 Route::get('/dashboard/myprofile', [CustomerUpdateProfileController::class, 'show'])->middleware('auth:customer');
 Route::put('dashboard/myprofile/update', [CustomerUpdateProfileController::class, 'update'])->middleware('auth:customer');
 
-Route::get('/categories', [CategoriesController::class, 'index']);
-Route::get('/categories/{category_slug}', [CategoriesController::class, 'show']);
+Route::get('/dashboard/topup', [CustomerTopUpController::class, 'show'])->middleware('auth:customer');
+Route::put('/dashboard/topup/update', [CustomerTopUpController::class, 'update'])->middleware('auth:customer');
+
+Route::get('/dashboard/purchasehistory', [CustomerPurchaseHistoryController::class, 'index'])->middleware('auth:customer');
