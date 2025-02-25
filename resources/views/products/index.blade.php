@@ -11,7 +11,7 @@
             @foreach ($products as $product)
                 <div class="products-cover">
                     <div class="products-card">
-                        <a href="{{ url('/products/' . $product->product_slug) }}">
+                        <a href="{{ url($product->msbrand->brand_slug . '/' . $product->product_slug) }}">
                             <img src="{{ asset('storage/product_photos/' . $product->product_image) }}" class="card-img-top" alt="{{ $product->product_name }}">
                         </a>
                         <div class="card-body">

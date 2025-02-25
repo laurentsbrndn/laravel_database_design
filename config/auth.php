@@ -57,6 +57,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+        'courier' => [
+            'driver' => 'session',
+            'provider' => 'couriers',
+        ],
     ],
 
     /*
@@ -85,6 +90,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\MsAdmin::class,
+        ],
+
+        'couriers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\MsCourier::class,
         ],
     ],
 

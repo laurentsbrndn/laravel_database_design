@@ -1,7 +1,17 @@
 <nav class="navbar">
     <a class="brand-logo" href="/"><img src="assets/image/Title Icon.jpeg" alt=""></a>
     <ul class="nav-link">
-        <li><a href="/categories">Category</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Category
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                <li><a class="dropdown-item" href="/">All</a></li>
+                @foreach ($categories as $category)
+                    <li><a class="dropdown-item" href="{{ url('/' . $category->category_slug) }}">{{ $category->category_name }}</a></li>
+                @endforeach
+            </ul>
+        </li>        
         <li>
             <div class="row">
                 <div class="col-md-20">

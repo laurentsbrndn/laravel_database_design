@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('courier_password', length: 200);
             $table->string('courier_phone_number', length: 200);
             $table->text('courier_address');
-            $table->string('courier_photo', length: 200);
+            $table->string('courier_photo', length: 200)->nullable();
             $table->enum('courier_gender', ['Male', 'Female', 'Prefer not to say']);
             $table->timestamps();
         });

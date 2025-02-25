@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('admin_password', length: 200);
             $table->string('admin_phone_number', length: 200);
             $table->text('admin_address'); 
-            $table->string('admin_photo', length: 200);
+            $table->string('admin_photo', length: 200)->nullable();
             $table->enum('admin_gender', ['Male', 'Female', 'Prefer not to say']);
             $table->timestamps();
         });

@@ -18,14 +18,23 @@ class RedirectIfAuthenticated
 
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
-        $guards = empty($guards) ? ['customer', 'admin'] : $guards;
+        // $guards = empty($guards) ? ['customer', 'admin'] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect('/');
-            }
+        // foreach ($guards as $guard) {
+        //     if (Auth::guard($guard)->check()) {
+        //         return redirect('/');
+        //     }
+        // }
+
+        // return $next($request);
+        
+        if (Auth::guard('customer')->check() && $request->is('admin/*')) {
+            return redirect('/');
         }
 
+        if (Auth::guard('admin')->check() && !$request->is('admin/*')) {
+            return redirect('/');
+        }
         return $next($request);
     }
 }

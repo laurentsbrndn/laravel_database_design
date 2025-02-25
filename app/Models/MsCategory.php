@@ -14,7 +14,7 @@ class MsCategory extends Model
     protected $primaryKey = 'category_id';
 
     protected $guarded = ['category_id'];
-
+    
     public function msproduct(){
         return $this->hasMany(MsProduct::class, 'category_id', 'category_id');
     }

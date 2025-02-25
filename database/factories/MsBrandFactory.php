@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use App\Models\MsBrand;
 use App\Models\MsCompany;
 
@@ -18,8 +19,12 @@ class MsBrandFactory extends Factory
      */
     public function definition(): array
     {
+
+        $brandName = $this->faker->words(2, true);
+
         return [
-            'brand_name' => $this->faker->unique()->word,
+            'brand_name' => $this->faker->words(2, 3),
+            'brand_slug' => Str::slug($brandName),
             'company_id' => MsCompany::inRandomOrder()->first()->company_id ?? MsCompany::factory(),
         ];
     }
