@@ -21,7 +21,7 @@ class AdminSignUpController extends Controller
             'admin_email' => 'required|email:dns|unique:ms_admins',
             'admin_password' => 'required|min:8|max:20',
             'admin_phone_number' => 'required|max:199',
-            'admin_address' => 'required|max:255',
+            'admin_address' => 'required|max:65000',
             'admin_photo' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             'admin_gender' => 'required|in:Male,Female,Prefer not to say',
         ]);

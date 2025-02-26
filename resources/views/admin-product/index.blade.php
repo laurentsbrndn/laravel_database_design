@@ -54,7 +54,7 @@
     
             <div class="form-group">
                 <label>Product Price</label>
-                <input type="text" name="product_price" class="form-control @error('product_price') is-invalid @enderror" value="{{ old('product_price', $products->product_price) }}">
+                <input type="number" name="product_price" class="form-control @error('product_price') is-invalid @enderror" value="{{ old('product_price', $products->product_price) }}">
                 @error('product_price')
                     <div class="invalid-feedback">
                         {{ $message }}

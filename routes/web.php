@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminUpdateProfileController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminCategoriesController;
 use App\Http\Controllers\AdminUpdateProductController;
+use App\Http\Controllers\AdminAddNewProductController;
 
 
 /*
@@ -59,12 +60,15 @@ Route::prefix('admin')->group(function(){
         Route::put('/myprofile/update', [AdminUpdateProfileController::class, 'update']);
 
         Route::get('/productlist', [AdminProductsController::class, 'index']);
-        Route::get('/productlist/{product_slug}', [AdminProductsController::class, 'show']);
 
-        Route::get('/productlist/categories/{category_slug}', [AdminCategoriesController::class, 'filterByCategory']);
+        Route::get('productlist/addnewproduct', [AdminAddNewProductController::class, 'index']);
+        Route::post('productlist/addnewproduct', [AdminAddNewProductController::class, 'store']);
 
         Route::get('/productlist/{product_slug}', [AdminUpdateProductController::class, 'show']);
+        Route::get('/productlist/categories/{category_slug}', [AdminCategoriesController::class, 'filterByCategory']);
         Route::put('/productlist/{product_slug}/update', [AdminUpdateProductController::class, 'update']);
+
+        
     });
 });
 

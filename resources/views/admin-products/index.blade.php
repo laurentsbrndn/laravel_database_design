@@ -11,6 +11,13 @@
             </div>
         @endif
 
+        <div>
+            <a href="/admin/productlist/addnewproduct" class="" 
+               style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; font-size: 40px;">
+               <i class="bi bi-plus-circle-fill"></i>
+            </a>
+        </div>
+
         <ul class="nav-link">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
