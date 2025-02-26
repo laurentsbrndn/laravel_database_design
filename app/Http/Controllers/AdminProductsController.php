@@ -22,16 +22,12 @@ class AdminProductsController extends Controller
     public function index()
     {   
         $admins = Auth::guard('admin')->user();
+        $categories = MsCategory::all();
 
         $products = MsProduct::latest()
-            ->when(request('search'), function ($productQuery) {
-                return $productQuery->where('product_name', 'like', '%' . request('search') . '%')
-                    ->orWhere('product_description', 'like', '%' . request('search') . '%')
-                        ->orWhereHas('msbrand', function ($brandQuery) {
-                            $brandQuery->where('brand_name', 'like', '%' . request('search') . '%');
-                });
-            })->with(['msbrand', 'mscategory'])->get();
+            ->filter(request(['search']))
+            ->with(['msbrand', 'mscategory'])->get();
 
-        return view('admin-products.index', compact('products', 'admins'));
+        return view('admin-products.index', compact('products', 'categories', 'admins'));
     }
 }

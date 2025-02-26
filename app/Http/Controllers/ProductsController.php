@@ -12,28 +12,18 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
+
     public function index()
-    {
+    {   
         $customers = Auth::guard('customer')->user();
         $categories = MsCategory::all();
+
         $products = MsProduct::latest()
-            ->when(request('search') && !empty(request('search')), function ($productQuery) {
-                $productQuery->where(function ($query) {
-                    $query->where('product_name', 'like', '%' . request('search') . '%')
-                        ->orWhere('product_description', 'like', '%' . request('search') . '%')
-                        ->orWhereHas('msbrand', function ($brandQuery) {
-                            $brandQuery->where('brand_name', 'like', '%' . request('search') . '%');
-                        });
-                });
-            })
-            ->with(['msbrand', 'mscategory'])
-            ->get();
+            ->filter(request(['search']))
+            ->with(['msbrand', 'mscategory'])->get();
 
-            
-        return view('products.index', compact('products', 'customers', 'categories'));
+        return view('products.index', compact('products', 'categories', 'customers'));
     }
-
-    
 
     public function show($brand_slug, $product_slug)
     {

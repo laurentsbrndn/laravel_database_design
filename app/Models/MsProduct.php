@@ -45,4 +45,15 @@ class MsProduct extends Model
             $product->product_slug = Str::slug($product->product_name);
         });
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('product_name', 'like', '%' . $search . '%')
+                ->orWhere('product_description', 'like', '%' . $search . '%')
+                ->orWhereHas('msbrand', function ($brandQuery) use ($search) {
+                    $brandQuery->where('brand_name', 'like', '%' . $search . '%');
+            });
+        });
+    }
 }

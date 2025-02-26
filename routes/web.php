@@ -61,7 +61,6 @@ Route::prefix('admin')->group(function(){
     Route::get('/productlist/{product_slug}', [AdminProductsController::class, 'show'])->middleware('auth:admin');
 
     Route::get('/productlist/categories/{category_slug}', [AdminCategoriesController::class, 'filterByCategory'])->middleware('auth:admin');
-    Route::get('/productlist', [AdminCategoriesController::class, 'index'])->middleware('auth:admin');
 
     Route::get('/productlist/{product_slug}', [AdminUpdateProductController::class, 'show'])->middleware('auth:admin');
     Route::put('/productlist/{product_slug}/update', [AdminUpdateProductController::class, 'update'])->middleware('auth:admin');
