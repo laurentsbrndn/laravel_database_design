@@ -7,6 +7,13 @@
 
     @endauth
     @if ($products->count())
+
+        @if (request('category'))
+            <h2 class="category-title">
+                Category: {{ $categories->firstWhere('category_slug', request('category'))->category_name }}
+            </h2>
+        @endif
+        
         <div class="products-container">
             @foreach ($products as $product)
                 <div class="products-cover">

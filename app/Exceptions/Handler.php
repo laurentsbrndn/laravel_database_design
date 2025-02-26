@@ -27,4 +27,23 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
+            $guard = data_get($exception->guards(), 0);
+        
+            switch ($guard) {
+                case 'admin':
+                    return redirect()->route('admin.login');
+                case 'customer':
+                    return redirect()->route('login');
+                default:
+                    return redirect('/');
+            }
+        }
+    
+        return parent::render($request, $exception);
+    }
+
 }

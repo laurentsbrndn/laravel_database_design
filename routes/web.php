@@ -28,44 +28,45 @@ use App\Http\Controllers\AdminUpdateProductController;
 |
 */
 
-Route::get('/', [ProductsController::class, 'index']);
+Route::get('/', [ProductsController::class, 'index'])->middleware('customer.access');
 
-Route::get('/login', [CustomerLoginController::class, 'index'])->name('login')->middleware('guest:customer');
+Route::get('/login', [CustomerLoginController::class, 'index'])->middleware('guest.access')->name('login');
 Route::post('/login', [CustomerLoginController::class, 'authenticate']);
 Route::post('/logout', [CustomerLoginController::class, 'logout']);
 
-Route::get('/signup', [CustomerSignUpController::class, 'index'])->middleware('guest:customer');
+Route::get('/signup', [CustomerSignUpController::class, 'index'])->middleware('guest.access');
 Route::post('/signup', [CustomerSignUpController::class, 'store']);
 
-Route::get('/dashboard/myprofile', [CustomerUpdateProfileController::class, 'show'])->middleware('auth:customer');
-Route::put('dashboard/myprofile/update', [CustomerUpdateProfileController::class, 'update'])->middleware('auth:customer');
+Route::get('/dashboard/myprofile', [CustomerUpdateProfileController::class, 'show'])->middleware('auth:customer', 'customer.access');
+Route::put('dashboard/myprofile/update', [CustomerUpdateProfileController::class, 'update'])->middleware('auth:customer', 'customer.access');
 
-Route::get('/dashboard/topup', [CustomerTopUpController::class, 'show'])->middleware('auth:customer');
-Route::put('/dashboard/topup/update', [CustomerTopUpController::class, 'update'])->middleware('auth:customer');
+Route::get('/dashboard/topup', [CustomerTopUpController::class, 'show'])->middleware('auth:customer', 'customer.access');
+Route::put('/dashboard/topup/update', [CustomerTopUpController::class, 'update'])->middleware('auth:customer', 'customer.access');
 
-Route::get('/dashboard/purchasehistory', [CustomerPurchaseHistoryController::class, 'index'])->middleware('auth:customer');
+Route::get('/dashboard/purchasehistory', [CustomerPurchaseHistoryController::class, 'index'])->middleware('auth:customer', 'customer.access');
 
 Route::prefix('admin')->group(function(){
     Route::get('/signup', [AdminSignUpController::class, 'index'])->middleware('guest:admin');
     Route::post('/signup', [AdminSignUpController::class, 'store']);
 
-    Route::get('/login', [AdminLoginController::class, 'index'])->middleware('guest:admin');
+    Route::get('/login', [AdminLoginController::class, 'index'])->middleware('guest:admin')->name('admin.login');
     Route::post('/login', [AdminLoginController::class, 'authenticate']);
     Route::post('/logout', [AdminLoginController::class, 'logout'])->middleware('auth:admin');
 
-    Route::get('/myprofile', [AdminUpdateProfileController::class, 'show'])->middleware('auth:admin');
-    Route::get('/', [AdminUpdateProfileController::class, 'show'])->middleware('auth:admin');
-    Route::put('/myprofile/update', [AdminUpdateProfileController::class, 'update'])->middleware('auth:admin');
+    Route::middleware(['auth:admin', 'admin.access'])->group(function () {
+        Route::get('/myprofile', [AdminUpdateProfileController::class, 'show']);
+        Route::get('/', [AdminUpdateProfileController::class, 'show']);
+        Route::put('/myprofile/update', [AdminUpdateProfileController::class, 'update']);
 
-    Route::get('/productlist', [AdminProductsController::class, 'index'])->middleware('auth:admin');
-    Route::get('/productlist/{product_slug}', [AdminProductsController::class, 'show'])->middleware('auth:admin');
+        Route::get('/productlist', [AdminProductsController::class, 'index']);
+        Route::get('/productlist/{product_slug}', [AdminProductsController::class, 'show']);
 
-    Route::get('/productlist/categories/{category_slug}', [AdminCategoriesController::class, 'filterByCategory'])->middleware('auth:admin');
+        Route::get('/productlist/categories/{category_slug}', [AdminCategoriesController::class, 'filterByCategory']);
 
-    Route::get('/productlist/{product_slug}', [AdminUpdateProductController::class, 'show'])->middleware('auth:admin');
-    Route::put('/productlist/{product_slug}/update', [AdminUpdateProductController::class, 'update'])->middleware('auth:admin');
-    
+        Route::get('/productlist/{product_slug}', [AdminUpdateProductController::class, 'show']);
+        Route::put('/productlist/{product_slug}/update', [AdminUpdateProductController::class, 'update']);
+    });
 });
 
-Route::get('{brand_slug}/{product_slug}', [ProductsController::class, 'show']);
-Route::get('/{category_slug}', [CategoriesController::class, 'filterByCategory']);
+Route::get('{brand_slug}/{product_slug}', [ProductsController::class, 'show'])->middleware('customer.access');
+Route::get('/{category_slug}', [CategoriesController::class, 'filterByCategory'])->middleware('customer.access');
