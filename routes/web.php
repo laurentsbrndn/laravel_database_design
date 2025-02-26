@@ -30,10 +30,6 @@ use App\Http\Controllers\AdminUpdateProductController;
 
 Route::get('/', [ProductsController::class, 'index']);
 
-
-Route::get('/', [CategoriesController::class, 'index']);
-
-
 Route::get('/login', [CustomerLoginController::class, 'index'])->name('login')->middleware('guest:customer');
 Route::post('/login', [CustomerLoginController::class, 'authenticate']);
 Route::post('/logout', [CustomerLoginController::class, 'logout']);
