@@ -19,7 +19,7 @@ class ProductsController extends Controller
         $categories = MsCategory::all();
 
         $products = MsProduct::latest()
-            ->filter(request(['search']))
+            ->filter(request(['search', 'category']))
             ->with(['msbrand', 'mscategory'])->get();
 
         return view('products.index', compact('products', 'categories', 'customers'));

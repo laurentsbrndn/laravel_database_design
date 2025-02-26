@@ -48,12 +48,21 @@ class MsProduct extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['category'] ?? false, function($query, $category){
+            $query->whereHas('mscategory', function($query) use ($category) {
+                $query->where('category_slug', $category);
+            });
+        });
+    
         $query->when($filters['search'] ?? false, function($query, $search) {
-            return $query->where('product_name', 'like', '%' . $search . '%')
-                ->orWhere('product_description', 'like', '%' . $search . '%')
-                ->orWhereHas('msbrand', function ($brandQuery) use ($search) {
-                    $brandQuery->where('brand_name', 'like', '%' . $search . '%');
+            $query->where(function ($query) use ($search) {
+                $query->where('product_name', 'like', '%' . $search . '%')
+                      ->orWhere('product_description', 'like', '%' . $search . '%')
+                      ->orWhereHas('msbrand', function ($brandQuery) use ($search) {
+                          $brandQuery->where('brand_name', 'like', '%' . $search . '%');
+                      });
             });
         });
     }
+
 }

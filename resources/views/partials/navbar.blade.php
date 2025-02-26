@@ -8,7 +8,7 @@
             <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                 <li><a class="dropdown-item" href="/">All</a></li>
                 @foreach ($categories as $category)
-                    <li><a class="dropdown-item" href="{{ url('/' . $category->category_slug) }}">{{ $category->category_name }}</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/?category=' . $category->category_slug) }}">{{ $category->category_name }}</a></li>
                 @endforeach
             </ul>
         </li>        
@@ -16,6 +16,9 @@
             <div class="row">
                 <div class="col-md-20">
                     <form action="/" method="get">
+                        @if(request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Type here to search" name="search" value="{{ request('search') }}">
                             <button class="btn btn-danger" type="submit">Search</button>

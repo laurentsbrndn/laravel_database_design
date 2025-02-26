@@ -25,7 +25,7 @@ class AdminProductsController extends Controller
         $categories = MsCategory::all();
 
         $products = MsProduct::latest()
-            ->filter(request(['search']))
+            ->filter(request(['search', 'category']))
             ->with(['msbrand', 'mscategory'])->get();
 
         return view('admin-products.index', compact('products', 'categories', 'admins'));
