@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MsCustomer;
-use App\Models\MsCategory;
 
 class CustomerSignUpController extends Controller
 {
     public function index(){
-        $categories = MsCategory::all();
-        return view('signup.index', compact('categories'));
+        return view('signup.index', [
+
+        ]);
     }
 
     public function store(Request $request){

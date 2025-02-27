@@ -28,6 +28,9 @@ class AdminAddNewProductController extends Controller
             'product_description' => 'required|max:65000',
             'brand_id' => 'required|exists:ms_brands,brand_id',
             'category_id' => 'required|exists:ms_categories,category_id',
+        ], [
+            'brand_id.required' => 'Brand is required. Please select a brand.',
+            'category_id.required' => 'Category is required. Please select a category.',
         ]);
 
         if ($request->hasFile('product_image')) {

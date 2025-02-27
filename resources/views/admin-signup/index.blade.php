@@ -9,7 +9,7 @@
     @csrf
     <div>
         <div>
-            <p class="login">Already have an account? <a href="\admin\login">Login</a></p>
+            <p class="login">Already have an account? <a href="/admin/login">Login</a></p>
         </div>
 
         <div>

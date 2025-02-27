@@ -38,6 +38,8 @@ class Handler extends ExceptionHandler
                     return redirect()->route('admin.login');
                 case 'customer':
                     return redirect()->route('login');
+                case 'courier' :
+                    return redirect()->route('courier.login');
                 default:
                     return redirect('/');
             }

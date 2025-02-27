@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MsCustomer;
-use App\Models\MsCategory;
 
 
 class CustomerLoginController extends Controller
 {
     public function index(){
-        $categories = MsCategory::all();
-        return view('login.index', compact('categories'));
+        return view('login.index', [
+            
+        ]);
     }
     
 

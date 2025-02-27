@@ -1,17 +1,23 @@
-function decreaseQuantity() {
-    var quantityInput = document.getElementById('product_stock');
-    var currentValue = parseInt(quantityInput.value);
+function increaseQuantity() {
+    let stockInput = document.getElementById('product_stock');
+    let currentValue = parseInt(stockInput.value);
 
-    if (currentValue > 1) {
-        quantityInput.value = currentValue - 1;
+    if (isNaN(currentValue)) {
+        currentValue = 0;
     }
+
+    stockInput.value = currentValue + 1;
 }
 
-function increaseQuantity(maxStock) {
-    var quantityInput = document.getElementById('product_stock');
-    var currentValue = parseInt(quantityInput.value);
+function decreaseQuantity() {
+    let stockInput = document.getElementById('product_stock');
+    let currentValue = parseInt(stockInput.value);
 
-    if (currentValue < maxStock) {
-        quantityInput.value = currentValue + 1;
+    if (isNaN(currentValue)) {
+        currentValue = 0;
+    }
+
+    if (currentValue > 0) {
+        stockInput.value = currentValue - 1;
     }
 }

@@ -16,6 +16,10 @@ class CourierAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (Auth::guard('courier')->guest()) {
+            return redirect('/courier/login');
+        }
+        
         if (Auth::guard('customer')->check()) {
             return redirect('/');
         }

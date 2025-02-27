@@ -26,7 +26,7 @@ class GuestAccess
         }
     
         if (Auth::guard('courier')->check()) {
-            return redirect('/courier');
+            return redirect('/courier/myprofile');
         }
 
         return $next($request);

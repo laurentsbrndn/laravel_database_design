@@ -20,13 +20,14 @@ class CustomerAccess
             return redirect('/admin/myprofile');
         }
 
+        if (Auth::guard('courier')->check()) {
+            return redirect('/courier/myprofile');
+        }
+
         if (Auth::guard('customer')->check() || Auth::guard('web')->guest()) {
             return $next($request);
         }
-    
-        if (Auth::guard('courier')->check()) {
-            return redirect('/courier');
-        }
+
         return $next($request);
     }
 }

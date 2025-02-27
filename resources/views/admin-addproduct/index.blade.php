@@ -75,40 +75,41 @@
 
             <div class="form-group">
                 <label>Brand Name</label>
-                <select name="brand_id" class="form-control @error('brand_name') is-invalid @enderror">
+                <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror">
                     <option value="">Select Brand</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->brand_id }}" 
-                            {{ old('brand_name') == $brand->brand_id ? 'selected' : '' }}>
+                            {{ old('brand_id') == $brand->brand_id ? 'selected' : '' }}>
                             {{ $brand->brand_name }}
                         </option>
                     @endforeach
                 </select>
-                @error('brand_name')
+                @error('brand_id')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
+            
 
             <div class="form-group">
                 <label>Category Name</label>
-                <select name="category_id" class="form-control @error('category_name') is-invalid @enderror">
+                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                     <option value="">Select Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->category_id }}" 
-                            {{ old('category_name') == $category->category_id ? 'selected' : '' }}>
+                            {{ old('category_id') == $category->category_id ? 'selected' : '' }}>
                             {{ $category->category_name }}
                         </option>
                     @endforeach
                 </select>
-                @error('category_name')
+                @error('category_id')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
-
+            
             <button type="submit" class="btn btn-success">Add</button>
         </form>
     </div>
