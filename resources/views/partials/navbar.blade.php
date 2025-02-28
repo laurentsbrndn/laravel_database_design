@@ -3,7 +3,7 @@
     <ul class="nav-link">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Category
+                Categories
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                 <li><a class="dropdown-item" href="/">All</a></li>
